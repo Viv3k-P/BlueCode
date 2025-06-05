@@ -3,28 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Title changed back to BlueCode or a generic one for this iteration -->
-    <title>BlueCode Solutions - Web Consulting</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-    <!-- Font Awesome is not strictly needed for this new review style, but keeping it won't harm -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <title>BlueCode Solutions - Smart Web Design & AI Integration</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <style>
-        /* --- Global Styles & Variables --- */
         :root {
-            --primary-blue: #007bff;
-            --primary-blue-darker: #0056b3;
-            --text-dark: #212529; /* Main headings and text */
-            --text-medium: #495057; /* Subheadings, less prominent text */
-            --text-light: #6c757d; /* Paragraphs, captions */
-            --bg-white: #ffffff;
-            --bg-light-gray: #f8f9fa;
-            --border-color: #dee2e6;
-            --card-shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
-            --border-radius: 8px;
+            --color-dark-bg: #111317;
+            --color-white: #ffffff;
+            --color-black: #000000;
+            --text-primary: #1A202C;
+            --text-secondary: #4A5568;
+            --text-nav: #E2E8F0;
+            /* --accent-red: #FF4F4F; Removed as decorative line is gone */
+            --gradient-purple-blue-start: #6D28D9; /* Adjusted for more purple like image */
+            --gradient-purple-blue-mid: #4F46E5;   /* Indigo */
+            --gradient-purple-blue-end: #2563EB;   /* Blue */
             --font-heading: 'Poppins', sans-serif;
             --font-body: 'Open Sans', sans-serif;
-            /* Added dark blue for the angled shape, can be same as footer or specific */
-            --dark-blue-accent: #0d2c4f; /* Example: Deep Navy for footer and angles */
+            --border-radius: 8px;
+            --border-radius-large: 20px;
+            --section-bg-light: #F7FAFC;
+            --card-shadow: 0 8px 16px rgba(0,0,0,0.05);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -32,10 +30,11 @@
 
         body {
             font-family: var(--font-body);
-            background-color: var(--bg-white); /* Default page background */
-            color: var(--text-dark);
-            line-height: 1.6;
+            background-color: var(--color-white);
+            color: var(--text-secondary);
+            line-height: 1.7;
             font-size: 16px;
+            overflow-x: hidden;
         }
 
         .container {
@@ -45,394 +44,462 @@
             padding: 0 15px;
         }
 
-        h1, h2, h3, h4, h5, h6 {
+        /* --- Typography & Common Elements --- */
+        h1, h2, h3, h4 {
             font-family: var(--font-heading);
-            color: var(--text-dark);
-            margin-bottom: 0.75rem;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        h1.hero-heading {
+            font-size: clamp(2.8rem, 7vw, 4.5rem); /* Increased max for larger appearance */
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            max-width: 850px; /* Allow it to be a bit wider */
+            margin-left: auto; /* For centering */
+            margin-right: auto; /* For centering */
+        }
+        h2 {
+            font-size: clamp(2rem, 5vw, 2.8rem);
+            text-align: center;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+        h3 {
+            font-size: 1.25rem;
             font-weight: 600;
+            margin-bottom: 0.75rem;
         }
-        h1 { font-size: clamp(2.5rem, 5vw, 3.2rem); font-weight: 700; }
-        /* General H2 styling - centered for section titles */
-        h2 { 
-            font-size: clamp(1.8rem, 4vw, 2.5rem); 
-            margin-bottom: 1rem; /* Reduced margin for tighter look with lead paragraph */
-            text-align: center; 
-        }
-        h3 { font-size: 1.15rem; font-weight: 600; color: var(--text-dark); }
-        
-        p { margin-bottom: 1rem; color: var(--text-light); }
-        /* Lead paragraph styling - centered, for under section titles */
-        section p.lead { 
-            font-size: 1.05rem; /* Slightly smaller than InnovateWeb lead */
-            color: var(--text-medium); 
-            max-width: 700px; /* Control width */
-            margin-left: auto;
-            margin-right: auto;
+        p { margin-bottom: 1.5rem; }
+        p.lead {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto 3rem auto;
             text-align: center;
-            margin-bottom: 3rem; /* Space before content grid */
         }
 
-
-        a { color: var(--primary-blue); text-decoration: none; transition: color 0.3s ease; }
-        a:hover { color: var(--primary-blue-darker); }
-
-        section {
-            padding: 60px 0;
-            overflow: hidden;
-            position: relative; /* For pseudo-elements like angled shapes */
-        }
-
-        .btn {
-            display: inline-block;
-            background-color: var(--primary-blue);
-            color: var(--bg-white);
-            padding: 10px 25px;
+        .btn-main {
+            background-color: var(--color-black);
+            color: var(--color-white);
+            padding: 14px 30px;
             border-radius: var(--border-radius);
-            font-weight: 500;
+            font-weight: 600;
             font-family: var(--font-heading);
-            text-align: center;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-            border: 1px solid var(--primary-blue);
+            text-decoration: none;
+            font-size: 1rem;
+            border: 1px solid var(--color-black);
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            display: inline-block;
         }
-        .btn:hover {
-            background-color: var(--primary-blue-darker);
-            border-color: var(--primary-blue-darker);
-            transform: translateY(-2px);
+        .btn-main:hover {
+            background-color: #2D3748;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
         }
-        .btn-nav { padding: 8px 20px; font-size: 0.9rem; }
-
-        /* --- Navbar (InnovateWeb style) --- */
+        
+        /* --- Navigation Bar (Scene style) --- */
         .navbar {
-            background-color: var(--bg-white); padding: 1rem 0; position: fixed;
-            width: 100%; top: 0; left: 0; z-index: 1000;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            background-color: var(--color-dark-bg); padding: 18px 0; position: fixed;
+            width: 100%; top: 0; left: 0; z-index: 1000; border-bottom: 1px solid #2D3748;
         }
         .navbar .container { display: flex; justify-content: space-between; align-items: center; }
-        .nav-logo { font-size: 1.5rem; font-weight: 700; color: var(--text-dark); }
-        .nav-links { list-style: none; display: flex; align-items: center; }
-        .nav-links li { margin-left: 20px; }
-        .nav-links li:first-child { margin-left: 0; }
-        .nav-links a { font-size: 0.95rem; font-weight: 500; color: var(--text-medium); padding: 5px 10px; }
-        .nav-links a:hover, .nav-links a.active { color: var(--primary-blue); }
-        .nav-actions { margin-left: 30px; }
-
-        /* --- Hero Section (InnovateWeb style) --- */
-        #hero {
-            padding: 120px 0 80px 0;
-            background-size: cover; background-position: center center; background-repeat: no-repeat;
-            position: relative;
-            background-image: url('https://images.unsplash.com/photo-1531403009284-440993d21634?auto=format&fit=crop&w=1600&q=70');
-            min-height: 70vh; display: flex; align-items: center;
+        .nav-logo {
+            display: flex; align-items: center; font-size: 1.5rem; font-weight: 700;
+            font-family: var(--font-heading); color: var(--color-white); text-decoration: none;
         }
-        #hero::before {
-            content: ''; position: absolute; top: 0; left: 0;
-            width: 100%; height: 100%; background-color: rgba(10, 20, 30, 0.6);
-            z-index: 1;
+        .nav-logo svg { width: 22px; height: 22px; margin-right: 8px; animation: logoIconColorShift 10s infinite alternate; }
+        @keyframes logoIconColorShift { 0% { fill: var(--gradient-purple-blue-start); } 50% { fill: var(--gradient-purple-blue-mid); } 100% { fill: var(--gradient-purple-blue-end); } }
+        .nav-links { list-style: none; display: flex; align-items: center; gap: 25px; margin: 0 auto; } /* Centered links */
+        .nav-links a {
+            font-size: 0.9rem; font-weight: 500; color: var(--text-nav); text-decoration: none;
+            padding: 5px 0; position: relative; transition: color 0.3s ease;
         }
-        #hero .container { position: relative; z-index: 2; max-width: 700px; text-align: left; margin-left: 0; }
-        #hero h1 { color: var(--bg-white); margin-bottom: 1rem; }
-        #hero p { color: rgba(255,255,255,0.85); font-size: 1.1rem; margin-bottom: 2rem; max-width: 550px; }
+        .nav-links a::after {
+            content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 2px;
+            background-color: var(--gradient-purple-blue-mid); transition: width 0.3s ease;
+        }
+        .nav-links a:hover { color: var(--color-white); }
+        .nav-links a:hover::after { width: 100%; }
+        .nav-button { /* Get Started button */
+            background-color: var(--color-black); color: var(--color-white); padding: 10px 20px;
+            border-radius: var(--border-radius); font-weight: 500; font-family: var(--font-heading);
+            text-decoration: none; font-size: 0.9rem; border: 1px solid var(--color-black);
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+        }
+        .nav-button:hover { background-color: #333; transform: translateY(-2px); }
 
-        /* --- "Our Work" (Portfolio - InnovateWeb style) --- */
-        #portfolio { background-color: var(--bg-light-gray); padding-bottom: 80px;}
-        #portfolio h2 { text-align: left; } /* Our Work heading is left aligned */
+        /* --- Hero Section (Adjusted Scene style) --- */
+        .hero-section {
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            min-height: calc(100vh - 78px); /* Navbar height is approx 78px with its padding */
+            padding: 100px 20px 60px 20px; /* Top padding for navbar, LR padding for content */
+            text-align: center; position: relative;
+            opacity: 0; animation: fadeInElement 0.8s 0.2s ease-out forwards;
+        }
+        .hero-pre-heading {
+            font-size: 0.95rem; /* Slightly larger as in image */
+            color: var(--text-secondary); margin-bottom: 1rem; font-weight: 500;
+            opacity: 0; transform: translateY(20px); animation: slideUpFadeIn 0.6s 0.4s ease-out forwards;
+        }
+        .hero-heading .highlight {
+            background: linear-gradient(90deg, var(--gradient-purple-blue-start), var(--gradient-purple-blue-mid), var(--gradient-purple-blue-end));
+            -webkit-background-clip: text; background-clip: text;
+            -webkit-text-fill-color: transparent; text-fill-color: transparent;
+            background-size: 300% 100%; animation: gradientFlow 5s ease infinite alternate;
+        }
+        @keyframes gradientFlow { 0% { background-position: 0% 50%; } 100% { background-position: 100% 50%; } }
+        .hero-subheading {
+            font-size: 1.15rem; line-height: 1.7; color: var(--text-secondary);
+            max-width: 700px; margin: 0 auto 2.5rem auto;
+            opacity: 0; transform: translateY(20px); animation: slideUpFadeIn 0.6s 0.8s ease-out forwards;
+        }
+        .hero-button-container {
+             opacity: 0; transform: translateY(20px); animation: slideUpFadeIn 0.6s 1s ease-out forwards;
+        }
+        /* Decorative Red Line - REMOVED */
+        /* Product Showcase Area - REMOVED */
+
+        /* --- General Section Styling & Animations --- */
+        section.content-section {
+            padding: 80px 0;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        section.content-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        #about-services, #contact { /* Give light bg to these as they are directly on white page */
+             background-color: var(--section-bg-light);
+        }
+        
+        /* --- About/Services Section --- */
+        #about-services .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 2rem;
+            text-align: left;
+        }
+        #about-services .about-item { padding: 20px; }
+        #about-services .about-item h3 {
+             background: linear-gradient(90deg, var(--gradient-purple-blue-start), var(--gradient-purple-blue-mid));
+            -webkit-background-clip: text; background-clip: text;
+            -webkit-text-fill-color: transparent; text-fill-color: transparent;
+            display: inline-block;
+        }
+
+        /* --- Portfolio Section --- */
+        /* #portfolio { background-color: var(--section-bg-light); } Portfolio is on white */
         .portfolio-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px; margin-top: 2rem;
-        }
-        .portfolio-item {
-            background-color: var(--bg-white); border-radius: var(--border-radius);
-            box-shadow: var(--card-shadow); overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .portfolio-item:hover { transform: translateY(-5px); box-shadow: 0 6px 20px rgba(0,0,0,0.1); }
-        .portfolio-item-image { width: 100%; height: 200px; overflow: hidden; }
-        .portfolio-item-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
-        .portfolio-item.tech-support .portfolio-item-image {
-            background-color: #E0F2F7; display: flex; align-items: center; justify-content: center;
-        }
-        .portfolio-item.tech-support .portfolio-item-image img { object-fit: contain; max-height: 160px; width: auto; }
-        .portfolio-content { padding: 20px; }
-        .portfolio-content h3 { font-size: 1.15rem; margin-bottom: 0.5rem; }
-        .portfolio-content p { font-size: 0.9rem; color: var(--text-light); margin-bottom: 0; }
-
-        /* --- NEW "Client Success Stories" (Reviews) Section --- */
-        #reviews {
-            background-color: var(--bg-white); /* White background for this section */
-            padding-top: 60px; /* Standard section padding */
-            padding-bottom: 120px; /* Increased to make space for the angled shape visually */
-            position: relative;
-            overflow: hidden; /* Important for containing the ::after pseudo-element correctly */
-        }
-        /* The H2 and p.lead styles defined globally will center the headings for #reviews */
-
-        .reviews-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
-            margin-top: 0; /* p.lead already has margin-bottom */
-            position: relative; /* To ensure cards are above the section's ::after */
-            z-index: 1;
+            margin-top: 1rem;
+        }
+        .portfolio-card {
+            background-color: var(--color-white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--card-shadow);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        .portfolio-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.08);
+        }
+        .portfolio-card-image { width: 100%; height: 220px; overflow: hidden; }
+        .portfolio-card-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease;}
+        .portfolio-card:hover .portfolio-card-image img { transform: scale(1.05); }
+        .portfolio-card-content { padding: 25px; flex-grow: 1; }
+        .portfolio-card-content h3 { margin-bottom: 0.5rem; }
+        .portfolio-card-content p { font-size: 0.95rem; margin-bottom: 0; }
+
+        /* --- Reviews Section --- */
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 1rem;
         }
         .review-card {
-            background: var(--bg-white);
-            padding: 25px; /* Slightly adjusted padding */
+            background: var(--color-white);
+            padding: 30px;
             border-radius: var(--border-radius);
-            border-left: 5px solid var(--primary-blue);
+            border-left: 5px solid var(--gradient-purple-blue-mid);
             box-shadow: var(--card-shadow);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            display: flex; /* For better internal alignment if needed */
-            flex-direction: column; /* Stack blockquote and cite */
-        }
-        .review-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
-        }
-        .review-card blockquote {
-            font-style: normal; /* Not italic as per image */
-            margin-bottom: 1rem;
             position: relative;
-            padding-left: 30px; /* More space for the larger quote mark */
-            color: var(--text-medium); /* Text color for the quote */
-            font-size: 0.95rem; /* Text size */
-            flex-grow: 1; /* Allow blockquote to take available space */
         }
-        .review-card blockquote::before {
+        .review-card::before {
             content: '“';
-            font-family: 'Poppins', Georgia, serif; /* Using Poppins for quote for consistency */
-            font-size: 3.5rem; /* Larger quote mark */
-            font-weight: 600;
-            color: var(--primary-blue);
-            opacity: 1; /* Solid color */
+            font-family: 'Poppins', Georgia, serif;
+            font-size: 4rem;
+            font-weight: 700;
+            color: var(--gradient-purple-blue-mid);
+            opacity: 0.8;
             position: absolute;
-            left: -5px; /* Position quote mark */
-            top: -15px;  /* Position quote mark */
+            left: 20px;
+            top: 15px;
             line-height: 1;
         }
+        .review-card blockquote {
+            font-style: normal; margin: 0; padding-left: 15px; padding-top: 30px;
+            color: var(--text-secondary); font-size: 1rem; margin-bottom: 1rem;
+        }
         .review-card cite {
-            display: block;
-            text-align: left;
-            font-weight: 600; /* Author name bold */
-            color: var(--text-dark);
-            font-size: 0.9rem;
-            margin-top: auto; /* Push cite to the bottom if card height varies */
+            display: block; text-align: right; font-weight: 600;
+            color: var(--text-primary); font-size: 0.9rem;
         }
-        .review-card cite span { /* Company/Title */
-            font-weight: 400;
-            color: var(--text-light);
-            font-size: 0.9em; /* Relative to cite's font size */
-            margin-left: 5px;
+        .review-card cite span { font-weight: 400; color: var(--text-secondary); font-size: 0.9em; }
+
+        /* --- Contact Section --- */
+        /* #contact { background-color: var(--section-bg-light); } Already set for #about-services, so it applies */
+        .contact-form { max-width: 700px; margin: 2rem auto 0 auto; }
+        .form-group { margin-bottom: 1.5rem; }
+        .contact-form label {
+            display: block; margin-bottom: 0.5rem; font-weight: 500;
+            color: var(--text-primary); font-size: 0.9rem;
         }
-
-        /* Dark blue angled shape for the bottom of #reviews section */
-        #reviews::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 100%;
-            height: 150px; /* Height of the shape material */
-            background-color: var(--dark-blue-accent);
-            transform: skewY(-2.5deg); /* Negative skew for upward slope from left */
-            transform-origin: bottom left;
-            z-index: 0; /* Behind container content */
-        }
-        /* --- End NEW "Client Success Stories" Section --- */
-
-
-        /* --- "Contact Us" (InnovateWeb style) --- */
-        #contact { background-color: var(--bg-light-gray); }
-        #contact h2 { text-align: left; } /* Contact Us heading is left aligned */
-        .contact-form .form-group { margin-bottom: 1.5rem; }
-        .contact-form label { display: block; margin-bottom: 0.5rem; font-weight: 500; color: var(--text-dark); font-size: 0.9rem; }
-        .contact-form input[type="text"], .contact-form input[type="email"], .contact-form textarea {
+        .contact-form input, .contact-form textarea {
             width: 100%; padding: 12px 15px; border-radius: var(--border-radius);
-            border: 1px solid var(--border-color); background-color: var(--bg-white);
-            font-size: 1rem; color: var(--text-dark); transition: border-color 0.3s ease;
+            border: 1px solid #CBD5E0;
+            background-color: var(--color-white); font-size: 1rem; color: var(--text-primary);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
         }
-        .contact-form input[type="text"]::placeholder, .contact-form input[type="email"]::placeholder, .contact-form textarea::placeholder { color: #adb5bd; }
-        .contact-form input[type="text"]:focus, .contact-form input[type="email"]:focus, .contact-form textarea:focus {
-            outline: none; border-color: var(--primary-blue); box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+        .contact-form input::placeholder, .contact-form textarea::placeholder { color: #A0AEC0; }
+        .contact-form input:focus, .contact-form textarea:focus {
+            outline: none; border-color: var(--gradient-purple-blue-mid);
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
         }
         .contact-form textarea { min-height: 120px; resize: vertical; }
-        .contact-form .btn { width: auto; cursor: pointer; }
-
-        /* --- Footer (InnovateWeb style) --- */
+        .contact-buttons { text-align: center; margin-top: 2rem; }
+        .contact-buttons .btn-main { margin-right: 15px; }
+        .btn-outline {
+            background-color: transparent;
+            color: var(--color-black);
+            border: 1px solid var(--color-black);
+        }
+        .btn-outline:hover {
+            background-color: var(--color-black);
+            color: var(--color-white);
+        }
+        
+        /* --- Footer --- */
         footer {
-            background-color: var(--text-dark); color: rgba(255,255,255,0.7);
-            text-align: center; padding: 30px 0; margin-top: 0;
+            background-color: var(--color-dark-bg);
+            color: var(--text-nav);
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 40px;
         }
         footer p { margin: 0; font-size: 0.9rem; }
-        footer a { color: var(--primary-blue); }
-        footer a:hover { color: var(--bg-white); }
+        footer a { color: var(--gradient-purple-blue-mid); text-decoration: none; }
+        footer a:hover { text-decoration: underline; }
 
+        /* Animation Helper Keyframes */
+        @keyframes fadeInElement { to { opacity: 1; } }
+        @keyframes slideUpFadeIn { to { opacity: 1; transform: translateY(0); } }
 
-        /* --- Responsive --- */
+        /* Responsive Adjustments */
         @media (max-width: 991px) {
-            .navbar .container { flex-wrap: wrap; justify-content: center; }
-            .nav-logo { margin-bottom: 1rem; width: 100%; text-align: center;}
-            .nav-links { margin-bottom: 1rem; order: 3; width: 100%; justify-content: center;}
-            .nav-actions { order: 2; margin-left:0; }
-            #hero .container { margin-left: auto; margin-right: auto; text-align: center; }
-            #hero h1 { font-size: 2.5rem; }
-            #hero p { max-width: 100%;}
+            /* .nav-links { display: none; } // Keep nav links, allow wrapping or burger */
+            .navbar .container { flex-wrap: wrap; }
+            .nav-links { order: 3; width: 100%; justify-content: center; margin-top: 10px; gap: 15px;}
+            .nav-button { order: 2; margin-left: auto;} /* Push button to right if logo wraps */
+
+            .hero-heading { font-size: clamp(2.5rem, 6vw, 3.5rem); }
         }
         @media (max-width: 768px) {
-            h1 { font-size: 2.2rem; }
-            h2 { font-size: 1.6rem; }
-            .portfolio-grid, .reviews-container { grid-template-columns: 1fr; } /* Stack on mobile */
-            #hero { padding: 100px 0 60px 0;}
-            section p.lead { margin-bottom: 2rem; } /* Adjust lead para margin on mobile */
-            #reviews::after { height: 100px; transform: skewY(-2deg); } /* Slightly smaller angle on mobile */
-            #reviews { padding-bottom: 80px; }
+            .navbar .container { padding: 0 20px; justify-content: space-between;}
+            .nav-logo { font-size: 1.3rem;}
+            .nav-logo svg { width: 20px; height: 20px;}
+            .nav-links { display: none; /* Hide links, show burger for proper mobile nav */ }
+            .nav-button { display: block; /* Ensure button is visible, or burger takes its place */ }
+
+
+            .hero-section { min-height: auto; padding: 100px 15px 40px 15px; }
+            .hero-heading { font-size: clamp(2rem, 8vw, 2.8rem); }
+            .hero-subheading { max-width: 90%; font-size: 1rem; }
+            
+            h2 { font-size: 1.8rem; }
+            p.lead { font-size: 1rem; margin-bottom: 2rem; }
+            section.content-section { padding: 60px 0; }
+            .portfolio-grid, .reviews-grid, #about-services .about-grid { grid-template-columns: 1fr; }
+            .contact-buttons .btn-main { margin-right: 0; margin-bottom: 1rem; display: block;}
         }
 
     </style>
 </head>
 <body>
 
-    <nav class="navbar">
+    <header class="navbar">
         <div class="container">
-            <!-- Logo changed to BlueCode for consistency with review content -->
-            <a href="#hero" class="nav-logo">BlueCode Solutions</a>
-            <ul class="nav-links">
-                <li><a href="#services">Services</a></li> <!-- Assuming a services section might exist -->
-                <li><a href="#portfolio">Portfolio</a></li>
-                <li><a href="#reviews">Reviews</a></li> <!-- Link to new reviews section -->
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            <div class="nav-actions">
-                <a href="#contact" class="btn btn-nav">Get a Quote</a> <!-- "Get a Quote" usually goes to contact -->
+            <a href="#" class="nav-logo">
+                <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8L21 10h-9z"></path></svg>
+                BlueCode
+            </a>
+            <nav class="nav-links">
+                <a href="#about-services">Services</a>
+                <a href="#portfolio">Portfolio</a>
+                <a href="#reviews">Reviews</a>
+                <a href="#contact">Contact</a>
+            </nav>
+            <a href="#contact" class="nav-button">Get Started</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero-section">
+            <!-- Decorative Line Removed -->
+            <div class="container">
+                <p class="hero-pre-heading">Modern Web Solutions, Intelligently Crafted</p>
+                <h1 class="hero-heading">
+                    The <span class="highlight">smart</span> way to build<br>your digital presence
+                </h1>
+                <p class="hero-subheading">
+                    BlueCode Solutions crafts bespoke websites with cutting-edge AI integration. We empower your business with beautiful design, seamless functionality, and intelligent automation.
+                </p>
+                <div class="hero-button-container">
+                    <a href="#contact" class="btn-main">Let's Discuss Your Project</a>
+                </div>
             </div>
-        </div>
-    </nav>
+        </section>
 
-    <section id="hero">
-        <div class="container">
-            <h1>Transform Your Business with AI-Powered Websites</h1>
-            <p>InnovateWeb specializes in creating cutting-edge websites with integrated AI agents and chatbots, enhancing user engagement and driving business growth.</p>
-            <a href="#contact" class="btn">Get Started</a>
-        </div>
-    </section>
+        <!-- Product Showcase Area Removed -->
 
-    <section id="portfolio" class="our-work">
-        <div class="container">
-            <h2>Our Work</h2>
-            <div class="portfolio-grid">
-                <div class="portfolio-item">
-                    <div class="portfolio-item-image">
-                        <img src="https://placehold.co/600x400/E9ECEF/495057/png?text=Automotive+Site&font=poppins" alt="Automotive Solutions">
+        <section id="about-services" class="content-section">
+            <div class="container">
+                <h2>Our Expertise</h2>
+                <p class="lead">We combine creative design with the latest technologies to deliver solutions that drive results and delight users.</p>
+                <div class="about-grid">
+                    <div class="about-item">
+                        <h3>Stunning Web Design</h3>
+                        <p>We create visually appealing, user-friendly websites tailored to your brand. Our designs are responsive, ensuring a perfect experience on any device, from desktops to mobiles.</p>
                     </div>
-                    <div class="portfolio-content">
-                        <h3>Automotive Solutions</h3>
-                        <p>AI-driven chatbot for customer service and sales inquiries.</p>
+                    <div class="about-item">
+                        <h3>AI-Powered Chatbots & Integration</h3>
+                        <p>Enhance customer engagement and automate support with intelligent AI chatbots. We integrate AI solutions seamlessly into your website to improve efficiency and user satisfaction.</p>
                     </div>
-                </div>
-                <div class="portfolio-item">
-                    <div class="portfolio-item-image">
-                        <img src="https://placehold.co/600x400/FFFFFF/007BFF/png?text=Real+Estate+Site&font=poppins" alt="Real Estate Innovations">
-                    </div>
-                    <div class="portfolio-content">
-                        <h3>Real Estate Innovations</h3>
-                        <p>Interactive property search with AI-powered recommendations.</p>
-                    </div>
-                </div>
-                <div class="portfolio-item tech-support">
-                    <div class="portfolio-item-image">
-                        <img src="https://placehold.co/300x200/E0F2F7/3DB2C7/png?text=Tech+Support+UI&font=poppins" alt="Tech Support Illustration">
-                    </div>
-                    <div class="portfolio-content">
-                        <h3>Tech Support Simplified</h3>
-                        <p>Automated troubleshooting and support with AI agents.</p>
+                    <div class="about-item">
+                        <h3>Custom Development</h3>
+                        <p>Have a unique requirement? We build custom web applications and features from scratch, perfectly aligned with your specific business goals and operational needs.</p>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="reviews"> <!-- Changed ID from testimonials to reviews -->
-        <div class="container">
-            <h2>Client Success Stories</h2>
-            <p class="lead">Hear what our valued partners have to say about their experience with BlueCode Solutions.</p>
-            <div class="reviews-container">
-                <div class="review-card">
-                    <blockquote>BlueCode Solutions delivered beyond our expectations! The new AutoShine website is stunning and has already boosted our online inquiries significantly. Professional and creative.</blockquote>
-                    <cite>Mark T., Owner <span>AutoShine Detailing</span></cite>
-                </div>
-                <div class="review-card">
-                    <blockquote>Working with BlueCode was a fantastic experience. They truly understood the vibe of Urban Eats Bistro and created a site that our customers love. Highly recommend their services!</blockquote>
-                    <cite>Sarah L., Manager <span>Urban Eats Bistro</span></cite>
-                </div>
-                <div class="review-card">
-                    <blockquote>Our online sales for GadgetHub have seen a remarkable increase since BlueCode revamped our e-commerce site. Their technical skill and design sense are top-notch.</blockquote>
-                    <cite>David K., CEO <span>GadgetHub Online</span></cite>
+        <section id="portfolio" class="content-section">
+            <div class="container">
+                <h2>Our Recent Creations</h2>
+                <p class="lead">A glimpse into the impactful digital experiences we've crafted for our clients.</p>
+                <div class="portfolio-grid">
+                    <div class="portfolio-card">
+                        <div class="portfolio-card-image"><img src="https://placehold.co/600x400/A770EF/FFFFFF/png?text=Prestige+Auto+Hub&font=poppins" alt="Car Company Website"></div>
+                        <div class="portfolio-card-content">
+                            <h3>Prestige Auto Hub</h3>
+                            <p>A luxurious online showroom for a high-end car dealership, featuring immersive AI-powered vehicle recommendations.</p>
+                        </div>
+                    </div>
+                    <div class="portfolio-card">
+                        <div class="portfolio-card-image"><img src="https://placehold.co/600x400/CF8BF3/FFFFFF/png?text=Culinary+Canvas+Bistro&font=poppins" alt="Restaurant Website"></div>
+                        <div class="portfolio-card-content">
+                            <h3>Culinary Canvas Bistro</h3>
+                            <p>An elegant website for a modern restaurant, complete with AI-driven menu suggestions and online reservations.</p>
+                        </div>
+                    </div>
+                    <div class="portfolio-card">
+                        <div class="portfolio-card-image"><img src="https://placehold.co/600x400/FDB99B/000000/png?text=TechNova+E-Store&font=poppins" alt="Tech Store Website"></div>
+                        <div class="portfolio-card-content">
+                            <h3>TechNova E-Store</h3>
+                            <p>A dynamic e-commerce platform for a tech retailer, enhanced with an AI chatbot for instant customer support.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <!-- The ::after pseudo-element will create the angled shape -->
-    </section>
+        </section>
 
-    <section id="contact">
-        <div class="container">
-            <h2>Contact Us</h2>
-            <form action="mailto:your-email@bluecodesolutions.com" method="post" enctype="text/plain" class="contact-form">
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" id="name" name="name" placeholder="Your Name" required>
+        <section id="reviews" class="content-section">
+            <div class="container">
+                <h2>What Our Clients Say</h2>
+                <p class="lead">We're proud of the partnerships we build and the success stories we help create.</p>
+                <div class="reviews-grid">
+                    <div class="review-card">
+                        <blockquote>BlueCode Solutions transformed our vision into a reality that exceeded all expectations. Their AI chatbot is a game-changer for our customer service!</blockquote>
+                        <cite>Alex M., CEO <span>Prestige Auto Hub</span></cite>
+                    </div>
+                    <div class="review-card">
+                        <blockquote>The team's creativity and technical expertise are outstanding. Our new website and its AI features have significantly boosted our online engagement and bookings.</blockquote>
+                        <cite>Sarah P., Owner <span>Culinary Canvas Bistro</span></cite>
+                    </div>
+                    <div class="review-card">
+                        <blockquote>From design to AI integration, BlueCode handled everything flawlessly. Our e-store is not just beautiful but also incredibly smart. Highly recommended!</blockquote>
+                        <cite>David L., Manager <span>TechNova E-Store</span></cite>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" placeholder="Your Email" required>
-                </div>
-                <div class="form-group">
-                    <label for="message">Message (Optional)</label>
-                    <textarea id="message" name="message" placeholder="How can we help you?"></textarea>
-                </div>
-                <button type="submit" class="btn">Send Message</button>
-            </form>
-        </div>
-    </section>
+            </div>
+        </section>
+
+        <section id="contact" class="content-section">
+            <div class="container">
+                <h2>Let's Build Something Amazing</h2>
+                <p class="lead">Ready to elevate your digital presence? Reach out to us to discuss your project, and let's create something truly special together.</p>
+                <form action="mailto:your-email@bluecodesolutions.com" method="post" enctype="text/plain" class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" placeholder="e.g., Jane Doe" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" placeholder="e.g., jane.doe@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Your Message</label>
+                        <textarea id="message" name="message" rows="5" placeholder="Tell us about your project or inquiry..." required></textarea>
+                    </div>
+                    <div class="contact-buttons">
+                        <button type="submit" class="btn-main">Send Your Message</button>
+                        <a href="https://calendly.com/your-bluecode-link" target="_blank" class="btn-main btn-outline">Schedule a Meeting</a>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
 
     <footer>
         <div class="container">
-            <p>&copy; <span id="currentYear"></span> BlueCode Solutions. All Rights Reserved. <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+            <p>&copy; <span id="currentYear"></span> BlueCode Solutions. All Rights Reserved. Crafted with <span style="color: var(--gradient-purple-blue-mid);">❤</span> and Code.</p>
         </div>
     </footer>
 
     <script>
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                if (this.getAttribute('href').length > 1) {
-                    e.preventDefault();
-                    const targetId = this.getAttribute('href');
-                    const targetElement = document.querySelector(targetId);
-                    if (targetElement) {
-                        targetElement.scrollIntoView({ behavior: 'smooth' });
-                    }
+        // Scroll Animations for content sections
+        const sectionsToAnimate = document.querySelectorAll('section.content-section');
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.15
+        };
+
+        const observer = new IntersectionObserver((entries, observerInstance) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observerInstance.unobserve(entry.target);
                 }
             });
+        }, observerOptions);
+
+        sectionsToAnimate.forEach(section => {
+            observer.observe(section);
         });
 
         document.getElementById('currentYear').textContent = new Date().getFullYear();
-
-        const navLinks = document.querySelectorAll('.nav-links a');
-        const sections = document.querySelectorAll('section[id]');
-        window.addEventListener('scroll', () => {
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (pageYOffset >= (sectionTop - sectionHeight / 3)) {
-                    current = section.getAttribute('id');
-                }
-            });
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href').substring(1) === current) {
-                    link.classList.add('active');
-                }
-            });
-        });
     </script>
+
 </body>
 </html>
